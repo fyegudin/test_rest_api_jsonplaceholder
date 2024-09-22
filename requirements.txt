@@ -1,0 +1,7 @@
+pytest
+allure-pytest
+requests
+faker
+pika
+mysql-connector-python
+redis

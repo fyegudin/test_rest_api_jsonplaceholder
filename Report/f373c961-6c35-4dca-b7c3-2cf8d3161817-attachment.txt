@@ -1,0 +1,4 @@
+[32mINFO    [0m logger:logger.py:31 Fetching a random user ID from user data.
+[32mINFO    [0m logger:logger.py:31 Random user ID selected: 6
+[32mINFO    [0m logger:logger.py:31 Retrieving email for user ID: 6
+[32mINFO    [0m logger:logger.py:31 Email retrieved for user ID 6: Karley_Dach@jasper.info

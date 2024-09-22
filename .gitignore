@@ -1,0 +1,8 @@
+venv/
+videos/
+.idea/
+.pytest_cache/
+state.json
+__pycache__/
+.idea
+.pytest_cache

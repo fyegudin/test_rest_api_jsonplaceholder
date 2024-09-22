@@ -1,0 +1,9 @@
+[32mINFO    [0m logger:logger.py:31 Inserting post to the database: 8, Executive fast pull near., Affect ready hand home provide. Whether record special brother travel senior., 101.
+[32mINFO    [0m logger:logger.py:31 Converting post data from DB to dictionary: (8, 'Executive fast pull near.', 'Affect ready hand home provide. Whether record special brother travel senior.', 101).
+[32mINFO    [0m logger:logger.py:31 Converted data: {'userId': 8, 'title': 'Executive fast pull near.', 'body': 'Affect ready hand home provide. Whether record special brother travel senior.', 'id': 101}.
+[32mINFO    [0m logger:logger.py:31 Validating post data from DB for post ID: 101.
+[32mINFO    [0m logger:logger.py:31 Post data retrieved: (8, 'Executive fast pull near.', 'Affect ready hand home provide. Whether record special brother travel senior.', 101).
+[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 8 with title: 'Executive fast pull near.' and body: 'Affect ready hand home provide. Whether record special brother travel senior.'
+[32mINFO    [0m logger:logger.py:31 Post creation response: 201
+[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 8 with post ID 101.
+[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 8, 'title': 'Executive fast pull near.', 'body': 'Affect ready hand home provide. Whether record special brother travel senior.', 'id': 101}.
