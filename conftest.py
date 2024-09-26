@@ -31,5 +31,8 @@ def load_csv_data(csv_file):
     return data
 
 
-
+@pytest.fixture
+def queue_name(request):
+    # This fixture could provide a default queue name
+    return request.param if hasattr(request, 'param') else "my_message"
 

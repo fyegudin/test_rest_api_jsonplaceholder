@@ -6,6 +6,7 @@ from allure import step
 
 @step("Send a message to RabbitMQ queue")
 def send_message(queue_name, message):
+    connection = None  # Initialize connection as None
     try:
         connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         channel = connection.channel()
@@ -24,11 +25,13 @@ def send_message(queue_name, message):
         allure.step(f"Error sending message: {e}")
         raise
     finally:
-        connection.close()
+        if connection:  # Only close the connection if it was successfully created
+            connection.close()
 
 
 @step("Receive message from RabbitMQ queue")
 def receive_message(queue_name):
+    connection = None  # Initialize connection as None
     try:
         connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         channel = connection.channel()
@@ -46,4 +49,6 @@ def receive_message(queue_name):
         allure.step(f"Error receiving message: {e}")
         raise
     finally:
-        connection.close()
+        if connection:  # Only close the connection if it was successfully created
+            connection.close()
+

@@ -4,6 +4,7 @@ import allure_steps
 from allure import feature, title
 from user_data import data_to_post
 from data.generated_data import PostAttributes, generate_post_data
+from dbs_connector.messaging_connector import send_message, receive_message
 
 
 @feature("Testing JSONPlaceholder API")
@@ -62,3 +63,32 @@ class TestAPI:
                                             data_post["body"])
         allure_steps.validate_post_response(response, data_post["userId"], data_post["id"],
                                             data_post["title"], data_post["body"])
+
+    @pytest.mark.retry(3)
+    @title("Send and receive a message using RabbitMQ and post")
+    @pytest.mark.parametrize("user_id, title, body, post_id, queue_name", [
+        (10, "Test Title", "Test Body", 101, "regular_message"),
+        (generated_data[PostAttributes.USER_ID.value],
+         generated_data[PostAttributes.TITLE.value],
+         generated_data[PostAttributes.BODY.value],
+         generated_data[PostAttributes.ENTRY_ID.value],
+         "generated_message")
+    ])
+    def test_send_and_receive_message_and_post(self, user_id, title, body, post_id, queue_name):
+        # Prepare the message
+        message = {
+            "userId": user_id,
+            "title": title,
+            "body": body,
+            "id": post_id
+        }
+
+        # Send the message to the RabbitMQ queue
+        send_message(queue_name, message)
+        # Receive the message from the RabbitMQ queue
+        received_message = receive_message(queue_name)
+        allure_steps.validate_received_message(received_message, message)
+        response = allure_steps.create_post(received_message["userId"], received_message["title"],
+                                            received_message["body"])
+        allure_steps.validate_post_response(response, received_message["userId"], received_message["id"],
+                                            received_message["title"], received_message["body"])

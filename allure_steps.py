@@ -61,7 +61,8 @@ def validate_user_posts_ids(posts):
     logger.info(f"Validating user posts IDs: {posts}")
     for res in posts.values():
         for post_id in res:
-            assert isinstance(post_id, int) and 1 <= post_id <= 100, f"Post ID {post_id} is out of range or not an integer."
+            assert isinstance(post_id,
+                              int) and 1 <= post_id <= 100, f"Post ID {post_id} is out of range or not an integer."
 
 
 @step("Create a post")
@@ -153,3 +154,9 @@ def convert_post_data(post_data):
     }
     logger.info(f"Converted data: {data_to_post}.")
     return data_to_post
+
+
+@step("Validate that the received message matches the sent message")
+def validate_received_message(received_message, expected_message):
+    logger.info("Validating received message.")
+    assert received_message == expected_message, "The received message does not match the sent message."
