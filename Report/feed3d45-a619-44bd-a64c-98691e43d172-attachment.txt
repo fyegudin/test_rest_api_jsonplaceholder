@@ -1,5 +1,0 @@
-[32mINFO    [0m logger:logger.py:31 Validating CSV data: {'userId': 3, 'title': 'When smile drive cell take.', 'body': 'Popular best few together scene under evidence.', 'id': 101}
-[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 3 with title: 'When smile drive cell take.' and body: 'Popular best few together scene under evidence.'
-[32mINFO    [0m logger:logger.py:31 Post creation response: 201
-[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 3 with post ID 101.
-[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 3, 'title': 'When smile drive cell take.', 'body': 'Popular best few together scene under evidence.', 'id': 101}.

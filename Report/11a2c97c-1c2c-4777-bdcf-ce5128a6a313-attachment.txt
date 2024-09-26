@@ -1,0 +1,3 @@
+[32mINFO    [0m logger:logger.py:31 Fetching posts for user ID: 9
+[32mINFO    [0m logger:logger.py:31 Posts fetched for user ID 9: [81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+[32mINFO    [0m logger:logger.py:31 Validating user posts IDs: {9: [81, 82, 83, 84, 85, 86, 87, 88, 89, 90]}

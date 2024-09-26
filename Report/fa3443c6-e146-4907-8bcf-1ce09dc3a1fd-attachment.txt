@@ -1,0 +1,5 @@
+[32mINFO    [0m logger:logger.py:31 Validating received message.
+[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 10 with title: 'Test Title' and body: 'Test Body'
+[32mINFO    [0m logger:logger.py:31 Post creation response: 201
+[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 10 with post ID 101.
+[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 10, 'title': 'Test Title', 'body': 'Test Body', 'id': 101}.

@@ -1,0 +1,5 @@
+[32mINFO    [0m logger:logger.py:31 Validating CSV data: {'userId': 2, 'title': 'Quality authority behind hair someone send experience.', 'body': 'Others nor result clearly air traditional voice need. Growth necessary happy experience.', 'id': 101}
+[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 2 with title: 'Quality authority behind hair someone send experience.' and body: 'Others nor result clearly air traditional voice need. Growth necessary happy experience.'
+[32mINFO    [0m logger:logger.py:31 Post creation response: 201
+[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 2 with post ID 101.
+[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 2, 'title': 'Quality authority behind hair someone send experience.', 'body': 'Others nor result clearly air traditional voice need. Growth necessary happy experience.', 'id': 101}.

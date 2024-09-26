@@ -1,0 +1,4 @@
+[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 9 with title: 'My New Post' and body: 'This is the content of my new post.'
+[32mINFO    [0m logger:logger.py:31 Post creation response: 201
+[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 9 with post ID 101.
+[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 9, 'title': 'My New Post', 'body': 'This is the content of my new post.', 'id': 101}.

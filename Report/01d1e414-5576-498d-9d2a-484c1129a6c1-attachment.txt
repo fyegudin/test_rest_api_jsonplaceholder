@@ -1,0 +1,5 @@
+[32mINFO    [0m logger:logger.py:31 Validating received message.
+[32mINFO    [0m logger:logger.py:31 Creating post for user ID: 8 with title: 'Eye reduce admit.' and body: 'Subject social citizen price between.'
+[32mINFO    [0m logger:logger.py:31 Post creation response: 201
+[32mINFO    [0m logger:logger.py:31 Validating post response for user ID 8 with post ID 101.
+[32mINFO    [0m logger:logger.py:31 Post created: {'userId': 8, 'title': 'Eye reduce admit.', 'body': 'Subject social citizen price between.', 'id': 101}.
