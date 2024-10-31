@@ -1,3 +1,5 @@
+from http.client import HTTPResponse
+
 import requests
 import allure
 import random
@@ -6,6 +8,8 @@ from user_data import user_data
 from dbs_connector.db_connector import init_db, insert_post, fetch_post, delete_database
 from config import BASE_URL
 from logger import CustomLogger
+from validation_response import validate_response  # Import the validation function
+from http_status import HTTPStatus  # Import the http status
 
 # Initialize the logger
 logger = CustomLogger(log_to_file=False)
@@ -94,13 +98,25 @@ def validate_csv_data(csv_data):
 @step("Validate the post response")
 def validate_post_response(response, user_id, post_id, title, body):
     logger.info(f"Validating post response for user ID {user_id} with post ID {post_id}.")
-    assert response.status_code == 201, f"Unexpected response code: {response.status_code}"
+    # Initialize a list to hold assertion errors
+    assertion_errors = []
+    validate_response(response_status_code=response.status_code, expected_data=HTTPStatus.CREATED)
+    # assert response.status_code == 201, f"Unexpected response code: {response.status_code}"
     created_post = response.json()
     logger.info(f"Post created: {created_post}.")
-    assert created_post["userId"] == user_id
-    assert created_post["id"] == post_id
-    assert created_post["title"] == title
-    assert created_post["body"] == body
+    # Collect assertions
+    if created_post["userId"] != user_id:
+        assertion_errors.append(f"Expected userId {user_id}, but got {created_post['userId']}.")
+    if created_post["id"] != post_id:
+        assertion_errors.append(f"Expected post ID {post_id}, but got {created_post['id']}.")
+    if created_post["title"] != title:
+        assertion_errors.append(f"Expected title '{title}', but got '{created_post['title']}'.")
+    if created_post["body"] != body:
+        assertion_errors.append(f"Expected body '{body}', but got '{created_post['body']}'.")
+
+    # Raise an exception if there are any assertion errors
+    if assertion_errors:
+        raise AssertionError("Validation failed with the following errors:\n" + "\n".join(assertion_errors))
 
 
 @step("Initialize the database")
@@ -128,13 +144,26 @@ def fetch_post_data(post_id):
 @step("Fetch and test data post from the database")
 def validate_post_data_from_db(user_id, title, body, post_id):
     logger.info(f"Validating post data from DB for post ID: {post_id}.")
+    # Initialize a list to hold assertion errors
+    assertion_errors = []
     post = fetch_post(post_id)
-    assert post is not None, "Post not found in the database."
-    logger.info(f"Post data retrieved: {post}.")
-    assert post[0] == user_id
-    assert post[1] == title
-    assert post[2] == body
-    assert post[3] == post_id
+    if post is None:
+        assertion_errors.append("Post not found in the database.")
+    else:
+        logger.info(f"Post data retrieved: {post}.")
+    # Collect assertions
+    if post[0] != user_id:
+        assertion_errors.append(f"Expected userId {user_id}, but got {post[0]}.")
+    if post[1] != title:
+        assertion_errors.append(f"Expected title '{title}', but got '{post[1]}'.")
+    if post[2] != body:
+        assertion_errors.append(f"Expected body '{body}', but got '{post[2]}'.")
+    if post[3] != post_id:
+        assertion_errors.append(f"Expected post ID {post_id}, but got {post[3]}.")
+
+    # Raise an exception if there are any assertion errors
+    if assertion_errors:
+        raise AssertionError("Validation failed with the following errors:\n" + "\n".join(assertion_errors))
 
 
 @step("Insert data to the database")
